@@ -129,6 +129,7 @@
     }
     ANTrafficGatherer * gatherer = [[ANTrafficGatherer alloc] initWithFrame:self.bounds sniffer:sniffer networks:networks];
     [(ANAppDelegate *)[NSApp delegate] pushView:gatherer direction:ANViewSlideDirectionBackward];
+    [sound pause];
 }
 
 - (void)doneButton:(id)sender {
@@ -138,6 +139,7 @@
     [sniffer setDelegate:nil];
     sniffer = nil;
     [(ANAppDelegate *)[NSApp delegate] showNetworkList];
+    [sound pause];
 }
 
 #pragma mark - Table View -

@@ -15,7 +15,6 @@
 - (id)initWithFrame:(NSRect)frameRect sniffer:(ANWiFiSniffer *)aSniffer networks:(NSArray *)theNetworks {
     if ((self = [super initWithFrame:frameRect])) {
         [self configureUI];
-        
         networks = theNetworks;
         sniffer = aSniffer;
         allClients = [[NSMutableArray alloc] init];
@@ -43,7 +42,7 @@
     clientsTable = [[NSTableView alloc] initWithFrame:[[clientsScrollView contentView] bounds]];
     backButton = [[NSButton alloc] initWithFrame:NSMakeRect(10, 10, 100, 24)];
     continueButton = [[NSButton alloc] initWithFrame:NSMakeRect(frame.size.width - 110, 10, 100, 24)];
-        
+    
     [backButton setBezelStyle:NSRoundedBezelStyle];
     [backButton setTitle:@"Back"];
     [backButton setFont:[NSFont systemFontOfSize:13]];
@@ -105,11 +104,16 @@
     [sniffer setDelegate:nil];
     sniffer = nil;
     [(ANAppDelegate *)[NSApp delegate] showNetworkList];
+    [sound stop];
 }
 
 - (void)continueButton:(id)sender {
     ANClientKiller * killer = [[ANClientKiller alloc] initWithFrame:self.bounds sniffer:sniffer networks:networks clients:allClients];
     [(ANAppDelegate *)[NSApp delegate] pushView:killer direction:ANViewSlideDirectionForward];
+    NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"Jamming" ofType:@"mp3"];
+    sound = [[NSSound alloc] initWithContentsOfFile:resourcePath byReference:YES];
+    // Do something with sound, like [sound play] and release.
+    [sound play];
 }
 
 #pragma mark - Table View -

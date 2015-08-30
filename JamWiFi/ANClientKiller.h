@@ -10,6 +10,7 @@
 #import "ANWiFiSniffer.h"
 #import "ANClient.h"
 #import "MACParser.h"
+#import "ANTrafficGatherer.h"
 
 @interface ANClientKiller : NSView <ANWiFiSnifferDelegate, NSTableViewDelegate, NSTableViewDataSource> {
     NSMutableArray * clients;
@@ -23,6 +24,7 @@
     NSScrollView * infoScrollView;
     NSButton * backButton;
     NSButton * doneButton;
+    NSSound *sound;
     
     NSButton * newClientsCheck;
 }

@@ -22,9 +22,11 @@
     
     NSTableView * clientsTable;
     NSScrollView * clientsScrollView;
+    NSSound *sound;
     
     NSButton * backButton;
     NSButton * continueButton;
+    
 }
 
 - (id)initWithFrame:(NSRect)frameRect sniffer:(ANWiFiSniffer *)aSniffer networks:(NSArray *)theNetworks;
